@@ -1,6 +1,8 @@
 require "bundler"
 RAILS_REQUIREMENT = "~> 6.0.0".freeze
 
+
+
 def apply_template!
   assert_minimum_rails_version
   assert_valid_options
@@ -185,6 +187,10 @@ def create_initial_migration
   return if Dir["db/migrate/**/*.rb"].any?
   run_with_clean_bundler_env "bin/rails generate migration initial_migration"
   run_with_clean_bundler_env "bin/rake db:migrate"
+end
+
+def update_database_url
+  system("sed -e '/default: &default/a\' -e '  url: <%= ENV['DATABASE_URL'] %>"' SampleApp/config/database.yml | tee SampleApp/config/database.yml")
 end
 
 apply_template!
