@@ -15,6 +15,7 @@ class SetupEnvironment
   require "fileutils"
   require "shellwords"
   require "tmpdir"
+  require "thor"
 
   attr_accessor :status
 
