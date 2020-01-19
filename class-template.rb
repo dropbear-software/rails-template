@@ -1,4 +1,10 @@
 require "bundler"
+require "fileutils"
+require "shellwords"
+require "tmpdir"
+require "thor"
+
+# You shouldn't need to change anything beyond these constrants
 RAILS_REQUIREMENT = "~> 6.0.0".freeze
 TEMPLATE_GITHUB_REPO = "https://github.com/dropbear-software/rails-template.git"
 
@@ -12,10 +18,6 @@ class ApplicationInfo
 end
 
 class SetupEnvironment
-  require "fileutils"
-  require "shellwords"
-  require "tmpdir"
-  require "thor"
 
   attr_accessor :status
 
